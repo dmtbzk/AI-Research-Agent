@@ -29,3 +29,27 @@ Do not write an academic research proposal.
 Do not explain the topic.
 Return only the execution plan.
 """
+
+
+RESEARCH_WRITER_PROMPT = """
+You are an AI research writer.
+
+Write a concise research report using the topic, research plan, and search results below.
+
+Topic:
+{topic}
+
+Research plan:
+{plan}
+
+Search results:
+{search_results}
+
+Requirements:
+- Summarize the main findings.
+- Mention the most relevant sources.
+- Keep it clear and practical.
+- Do not invent facts beyond the provided results.
+
+Return only the final report.
+"""

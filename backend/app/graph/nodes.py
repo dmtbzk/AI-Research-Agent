@@ -2,7 +2,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 from app.graph.state import ResearchState
-from app.prompts.research_prompt import RESEARCH_PLANNER_PROMPT
+from app.prompts.research_prompt import RESEARCH_PLANNER_PROMPT, RESEARCH_WRITER_PROMPT
 from playwright.sync_api import sync_playwright
 from urllib.parse import quote_plus, urlparse, parse_qs, unquote
 
@@ -68,3 +68,19 @@ def clean_duckduckgo_url(url: str):
         return "https:" + url
 
     return url
+
+def writer_node(state: ResearchState):
+    prompt = RESEARCH_WRITER_PROMPT.format(
+        topic=state["topic"],
+        plan=state["plan"],
+        search_results=state["search_results"]
+    )
+
+    response = client.responses.create(
+        model="gpt-4o-mini",
+        input=prompt,
+    )
+
+    state["report"] = response.output_text
+
+    return state
