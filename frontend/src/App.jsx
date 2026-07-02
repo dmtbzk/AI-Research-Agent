@@ -1,24 +1,15 @@
-import {
-  Box,
-  Container,
-  Heading,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
+import Header from './components/Header.jsx'
+import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
-    <Box minH="100vh" bg="gray.50">
-      <Container maxW="container.lg" py={12}>
-        <VStack spacing={4} align="center">
-          <Heading size="xl" color="blue.600">
-            AI Research Agent
-          </Heading>
-          <Text color="gray.500">
-            Chakra UI hazır, adım adım devam ediyoruz.
-          </Text>
-        </VStack>
+    <Box minH="100vh" bg="gray.50" display="flex" flexDirection="column">
+      <Header />
+      <Container maxW="container.lg" py={10} flex="1">
+        {/* sayfa içeriği buraya gelecek */}
       </Container>
+      <Footer />
     </Box>
   )
 }
