@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.schemas import ResearchRequest
+from app.api.schemas import ResearchRequest, ResearchResponse
 from app.graph.workflow import build_research_graph
 
 app = FastAPI()
@@ -12,7 +12,9 @@ def health():
     return {"status": "ok"}
 
 
-@app.post("/research")
+
+
+@app.post("/research", response_model=ResearchResponse)
 def research(request: ResearchRequest):
     result = research_graph.invoke({
         "topic": request.topic,
@@ -21,4 +23,4 @@ def research(request: ResearchRequest):
         "report": ""
     })
 
-    return result
+    return ResearchResponse(report=result["report"])
