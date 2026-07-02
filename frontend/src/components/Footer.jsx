@@ -2,10 +2,10 @@ import { Box, Container, Text } from '@chakra-ui/react'
 
 export default function Footer() {
   return (
-    <Box bg="gray.100" borderTop="1px" borderColor="gray.200" mt="auto">
+    <Box borderTop="1px" borderColor="gray.100">
       <Container maxW="container.lg">
-        <Text py={4} textAlign="center" fontSize="sm" color="gray.500">
-          © {new Date().getFullYear()} AI Research Agent — LangGraph + FastAPI
+        <Text py={5} textAlign="center" fontSize="xs" color="gray.400">
+          © {new Date().getFullYear()} AI Research Agent
         </Text>
       </Container>
     </Box>

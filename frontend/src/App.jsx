@@ -19,16 +19,17 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic }),
       })
-      if (!res.ok) throw new Error('Sunucu hatası')
+      if (!res.ok) throw new Error('Something went wrong. Please try again.')
       const data = await res.json()
       setResult({ topic, report: data.report })
     } catch (err) {
       toast({
-        title: 'Hata',
+        title: 'Error',
         description: err.message,
         status: 'error',
         duration: 4000,
         isClosable: true,
+        position: 'top',
       })
     } finally {
       setIsLoading(false)
@@ -38,8 +39,8 @@ export default function App() {
   return (
     <Box minH="100vh" bg="gray.50" display="flex" flexDirection="column">
       <Header />
-      <Container maxW="container.lg" py={10} flex="1">
-        <VStack spacing={6}>
+      <Container maxW="container.md" py={16} flex="1">
+        <VStack spacing={8}>
           <ResearchForm onSubmit={handleSubmit} isLoading={isLoading} />
           {result && <ResearchResult topic={result.topic} report={result.report} />}
         </VStack>
